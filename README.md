@@ -5,6 +5,8 @@ This code will be ugly. I'm new to this. Sorry.
 
 [Land of Lisp](https://nostarch.com/lisp.htm) has its very own [music video](https://www.youtube.com/watch?v=HM1Zb3xmvMc), which is hilarious and awesome (kind of like the entire book).
 
+![Land of Lisp the Music Video](https://i.imgur.com/ClVuIBEm.gif)
+
 Seriously, check it out...
 
 ![Introduction to Land of Lisp by Conrad Barski](https://i.imgur.com/DM7ZooE.png)
