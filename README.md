@@ -5,7 +5,8 @@ This code will be ugly. I'm new to this. Sorry.
 
 [Land of Lisp](https://nostarch.com/lisp.htm) has its very own [music video](https://www.youtube.com/watch?v=HM1Zb3xmvMc), which is hilarious and awesome (kind of like the entire book).
 
-![Land of Lisp the Music Video](https://i.imgur.com/ClVuIBEm.gif)
+You'll be eating parentheses for breakfast in no time...
+![Land of Lisp the Music Video](https://raw.githubusercontent.com/batpigandme/land_o_lisp/master/img/land_of_lisp_parentheses_for_breakfast.gif)
 
 Seriously, check it out...
 
