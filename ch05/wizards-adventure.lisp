@@ -53,3 +53,38 @@
     (remove-if-not #'at-loc-p objs)))
 
 (objects-at 'living-room *objects* *object-locations*)
+
+;; describing visible objects
+(defun describe-objects (loc objs obj-loc)
+    (labels ((describe-obj (obj)
+                `(you see a ,obj on the floor.)))
+        (apply #'append (mapcar #'describe-obj (objects-at loc objs obj-loc)))))
+
+(describe-objects 'living-room *objects* *object-locations*)
+
+;; variable to track player's current position
+;; initialised to living room, where players begin
+(defparameter *location* 'living-room)
+
+;; look function to call all of our descriptor functions
+;; uses global variable names, not FP style
+(defun look ()
+    (append (describe-location *location* *nodes*)
+            (describe-paths *location* *edges*)
+            (describe-objects *location* *objects* *object-locations*)))
+
+(look)
+
+;; walk function take direction and lets us walk there
+;; if function checks to see if next variable is nil
+;; look retrieves description of new locaiton
+(defun walk (direction)
+    (let ((next (find direction
+                    (cdr (assoc *location* *edges*))
+                    :key #'cadr)))
+    (if next
+        (progn (setf *location* (car next))
+                (look))
+        '(you cannot got that way.))))
+
+(walk 'west)
