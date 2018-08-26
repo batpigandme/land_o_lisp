@@ -20,6 +20,7 @@
                         (garden (living-room east door))
                         (attic (living-room downstairs ladder))))
 
+;; describe path singular
 (defun describe-path (edge)
     `(there is a ,(caddr edge) going ,(cadr edge) from here.))
 
