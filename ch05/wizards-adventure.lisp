@@ -86,7 +86,7 @@
     (if next
         (progn (setf *location* (car next))
                 (look))
-        '(you cannot got that way.))))
+        '(you cannot go that way.))))
 
 (walk 'west)
 
