@@ -89,3 +89,22 @@
         '(you cannot got that way.))))
 
 (walk 'west)
+
+;; command to pick up objects
+;; uses member function to see if object present
+;; if object at current loc push new item to object-locations list
+(defun pickup (object)
+    (cond ((member object
+                    (objects-at *location* *objects* *object-locations*))
+            (push (list object 'body) *object-locations*)
+            `(you are now carrying the ,object))
+        (t '(you cannot get that.))))
+
+(walk 'east)
+(pickup 'whiskey)
+
+;; create function that lets players see inventory of carried objs
+(defun inventory ()
+    (cons 'items- (objects-at 'body *objects* *object-locations*)))
+
+(inventory)
