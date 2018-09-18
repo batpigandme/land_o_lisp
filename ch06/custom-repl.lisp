@@ -20,3 +20,30 @@
             (cons (car cmd) (mapcar #'quote-it (cdr cmd))))))
 
 ;; defun game eval
+;; only alow certain parameters
+(defparameter *allowed-commands* '(look walk pickup inventory))
+
+(defun game-eval (sexp)
+        (if (member (car sexp) *allowed-commands*)  ; checks if first word is allowed-command
+            (eval sexp)                             ; use standard evaluation to execute command
+            '(i do not know that command.)))
+
+;; defun a game-print function allowing lowers and uppers
+(defun tweak-text (lst caps lit)                                              ; looks at each character in list and modifies it
+    (when lst
+        (let ((item (car lst))                                                ; local variable item
+            (rest (cdr lst)))                                                 ; local variable rest
+        (cond ((eq item #\space) (cons item (tweak-text rest caps lit)))      ; check character at top of list for conditions
+              ((member item '(#\! #\? #\.)) (cons item (tweak-text rest t lit)))
+              ((eq item #\") (tweak-text rest caps (not lit)))                ; check for quotation mark, fallback for exceptional text
+              (lit (cons item (tweak-text rest nil lit)))
+              ((or caps lit) (cons (char-upcase item) (tweak-text rest nil lit)))
+              (t (cons (char-downcase item) (tweak-text rest nil nil)))))))
+(defun game-print (lst)
+    (princ (coerce (tweak-text (coerce (string-trim "() "                   ; converts the string to a list of characters
+                                                    (prin1-to-string lst))  ; converts the symbol list into a string
+                                    'list)
+                            t                                               ; args indented as they belong to tweak-text
+                                nil)
+                    'string))
+(fresh-line))
